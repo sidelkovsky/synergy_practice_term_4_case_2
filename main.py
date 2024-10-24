@@ -55,6 +55,10 @@ def years_as_word(number):
         return "года"
     return "лет"
 
+def get_week_day(birth_date):
+    weekdays = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"]
+    return weekdays[birth_date.weekday()]
+
 """
 Actual program
 """
@@ -82,15 +86,17 @@ while True:
     else:
         print("\nЭто должно быть число от 1900 до 2020! Давайте еще раз!")
 
-if is_leap_year(int(year)):
-    print("\nГод вашего рождения был вискосоным.\n")
-else:
-    print("\nГод вашего рождения не был вискосоным.\n")
-
 birth_date_string = "-".join([day, month, year])
 birth_date = datetime.strptime(birth_date_string, '%d-%m-%Y').date()
 num_years = calculate_age(birth_date)
 years_as_word = years_as_word(num_years)
+
+print(f"\nВаш день рождения {birth_date_string}. Это – {get_week_day(birth_date)}.")
+
+if is_leap_year(int(year)):
+    print("\nГод вашего рождения был вискосоным.\n")
+else:
+    print("\nГод вашего рождения не был вискосоным.\n")
 
 print(f"Вам {num_years} {years_as_word}.\n")
 
